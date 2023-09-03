@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: home
 ---
 <link href="/assets/css/main.css" rel="stylesheet"  />
 <div class="w-full">
@@ -9,9 +9,21 @@ layout: page
         </div>
     </div>
     <div class="split-line h-[1px] border-b border-gray-200 border-solid"></div>
-    <div class="w-[986px] mx-auto my-5 flex flex-col gap-4">
-        <div class="page-content my-2 mb-5">
-            {{ content }}
+    <div class="w-[986px] mx-auto my-5 flex flex-col">
+        <div class="!text-2xl">Posts</div>
+        <div class="page-content my-3 flex flex-col gap-5">
+            {% for item in site.posts %}
+            <div class="post-in-page flex flex-col mb-5 border-b border-dashed border-slate-300 pb-10 last:border-none">
+                <div class="post-title !text-2xl">
+                    <a href="{{ item.url }}">
+                        {{ item.title }}
+                    </a>
+                </div>
+                <div class="post-preview mt-2 !text-base text-slate-500 !line-clamp-3">
+                    {{ item.content }}
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
     <div class="split-line h-[1px] border-b border-gray-200 border-solid"></div>

@@ -1,5 +1,61 @@
 ---
-layout: default
+layout: post
 ---
 <link href="/assets/css/main.css" rel="stylesheet"  />
-<div class="w-full">{{ content }}</div> 
+<div class="w-full">
+    <div class="top-header flex flex-row my-3 w-[986px] mx-auto">
+        <div class="site-title  !font-light !text-2xl">
+            <a href="/" class="inline-block !text-slate-900 !outline-none cursor-pointer !hover:outline-none !no-underline">
+            {{ site.title }}
+            </a>
+        </div>
+    </div>
+    <div class="split-line h-[1px] border-b border-gray-200 border-solid"></div>
+    <div class="w-[986px] mx-auto my-5 flex flex-col gap-4">
+        <div class="nav flex justify-between flex-row">
+            <div class="flex">
+                {% if page.previous %}
+                <a href="{{ page.previous.url }}">
+                    <span class="">上一篇: {{ page.previous.title }}</span>
+                </a>
+                {% endif %}
+            </div>
+            <div class="flex">
+                {% if page.next %}
+                <a href="{{ page.next.url }}">
+                    <span class="">下一篇: {{ page.next.title }}</span>
+                </a>
+            {% endif %}
+            </div>
+        </div>
+        <div class="title flex flex-row justify-between">
+            <div class="text-3xl flex ">
+                {{ page.title }}
+            </div>
+            <div class="date flex text-sm text-slate-500 items-end">
+                {{ page.date | date: "%Y-%m-%d %H:%M" }}
+            </div>
+        </div>
+        <div class="post-content my-2 mb-5">
+            {{ content }}
+        </div>
+    </div>
+    <div class="split-line h-[1px] border-b border-gray-200 border-solid"></div>
+    <div class="bottom-footer my-10 flex flex-row w-[986px] mx-auto justify-between">
+        <div class="social flex">
+            {% if site.github_username %}
+            <a href="https://github.com/{{ site.github_username }}">
+                <svg class="svg-icon !w-4 !p-0"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg>
+                <span class="username">{{ site.github_username }}</span>
+            </a>
+            {% endif %}
+        </div>
+        <div class="description flex">
+            {% if site.description %}
+            <div class="flex text-slate-500">
+                <span class="username">{{ site.description }}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div> 
