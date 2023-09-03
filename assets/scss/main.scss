@@ -1,0 +1,11 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "./minima.scss";
+
+.post-content p{
+    margin-top: 1rem;
+}
+.post-content .highlighter-rouge{
+    margin-top: 0.25rem
+}
