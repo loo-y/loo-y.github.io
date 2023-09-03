@@ -12,7 +12,7 @@ source "https://rubygems.org"
 
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 # gem 'public_suffix', '5.0.3'
-gem "minima", "~> 2.5"
+# gem "minima", "~> 2.5"
 gem 'jekyll-paginate'
 gem 'webrick'
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
@@ -39,7 +39,7 @@ gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 # do not have a Java counterpart.
 gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
-# bundle install
+# bundle clean --force; bundle install
 # JEKYLL_ENV=production NODE_ENV=production bundle exec jekyll build
 # JEKYLL_ENV=production NODE_ENV=production bundle exec jekyll serve
 

@@ -3,12 +3,7 @@ layout: home
 ---
 <link href="/assets/css/main.css" rel="stylesheet"  />
 <div class="w-full">
-    <div class="top-header flex flex-row my-3 w-[986px] mx-auto">
-        <div class="site-title  !font-light !text-2xl">
-            {{ site.title }}
-        </div>
-    </div>
-    <div class="split-line h-[1px] border-b border-gray-200 border-solid"></div>
+    {% include topHeader.html %}
     <div class="w-[986px] mx-auto my-5 flex flex-col">
         <div class="!text-2xl">Posts</div>
         <div class="page-content my-3 flex flex-col gap-5">
@@ -26,22 +21,5 @@ layout: home
             {% endfor %}
         </div>
     </div>
-    <div class="split-line h-[1px] border-b border-gray-200 border-solid"></div>
-    <div class="bottom-footer my-10 flex flex-row w-[986px] mx-auto justify-between">
-        <div class="social flex">
-            {% if site.github_username %}
-            <a href="https://github.com/{{ site.github_username }}">
-                <svg class="svg-icon !w-4 !p-0"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg>
-                <span class="username">{{ site.github_username }}</span>
-            </a>
-            {% endif %}
-        </div>
-        <div class="description flex">
-            {% if site.description %}
-            <div class="flex text-slate-500">
-                <span class="username">{{ site.description }}</span>
-            </div>
-            {% endif %}
-        </div>
-    </div>
+    {% include bottomFooter.html %}
 </div> 

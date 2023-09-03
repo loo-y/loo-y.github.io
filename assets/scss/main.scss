@@ -9,3 +9,13 @@
 .post-content .highlighter-rouge{
     margin-top: 0.25rem
 }
+
+a, a:visited, a:hover{
+    text-decoration-line: none !important;
+    color: unset;
+    cursor: pointer;
+}
+
+a:hover{
+    color: #333333;
+}
