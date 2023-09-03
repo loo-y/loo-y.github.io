@@ -19,3 +19,10 @@ a, a:visited, a:hover{
 a:hover{
     color: #333333;
 }
+
+/* hack for safari */
+.\!line-clamp-3{
+    *{
+        display: inline;
+    }
+}
