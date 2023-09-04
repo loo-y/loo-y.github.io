@@ -27,11 +27,14 @@ centos7.x 缺少  CXXABI_1.3.9
 yum install -y cairo-devel libjpeg-turbo-devel pango-devel giflib-devel librsvg2-devel
 ```
 
-<br >
+<br />
 
 ### TODO
 另外这里还有一个问题，由于yum本身在 ```Windows/Mac``` 并不存在，因此在postinstall时需要考虑判断操作系统。
 
+<br />
 
 ### 相关问题
 [Cannot get canvas running on CentOS 7](https://github.com/Automattic/node-canvas/issues/1796)
+
+<br />
