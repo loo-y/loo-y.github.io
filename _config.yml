@@ -23,6 +23,7 @@ title: Knowledge Base VIKU
 description: >- # this means to ignore newlines until "baseurl:"
   Knowledge base of some dev info.
 baseurl: "" # the subpath of your site, e.g. /blog
+favicon: /assets/favicon.ico
 url: "https://knowledge.viku.org/" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: jekyllrb
 github_username:  loo-y
