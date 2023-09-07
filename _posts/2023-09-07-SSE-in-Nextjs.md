@@ -59,7 +59,7 @@ export async function GET(request: NextRequest) {
 ```
 
 <br />
-<br />
+
 #### 客户端
 
 ```typescript
@@ -69,5 +69,31 @@ eventSource.onmessage = function (event) {
     console.log('Received message:', event.data)
 }
 ```
+<br />
 
 但是常规的 SSE 只可以通过GET来访问，这就导致请求方传递参数会有一些不那么优雅。如果需要传递大量文本时无法满足。
+
+我们可以使用 Azure 的 [fetch-event-source](https://github.com/Azure/fetch-event-source)
+
+在 Nextjs 中，服务端仅需将 ```GET``` 方法名改为 ```POST```
+
+客户端的修改如下：
+
+```typescript
+import { fetchEventSource } from '@microsoft/fetch-event-source';
+const eventSourcePost = fetchEventSource('/sse/api/stream', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        foo: 'bar'
+    }),
+    onmessage: function (event) {
+        console.log('Received message:', event.data)
+    }
+});
+```
+
+
+
