@@ -1,0 +1,68 @@
+---
+layout: post
+title: Create Server-Sent Events in Nextjs
+date:   2023-09-07 22.18:00 +0800
+---
+
+由于Nextjs新的 App Router 采用的是 Mozilla 标准 WebAPI 的 [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response), 所以写法和普通的 Node SSE 略有不同，以下是代码示例：
+
+#### 服务端 ```app/api/stream/route.ts```
+```Typescript
+import { NextRequest, NextResponse } from 'next/server'
+
+export async function GET(request: NextRequest) {
+    const sseData = `:ok\n\nevent: message\ndata: Initial message\n\n`
+    // 将 SSE 数据编码为 Uint8Array
+    const encoder = new TextEncoder()
+    const sseUint8Array = encoder.encode(sseData)
+
+    // 创建 TransformStream
+    const transformStream = new TransformStream({
+        transform(chunk, controller) {
+            controller.enqueue(chunk)
+        },
+    })
+
+    // 创建 SSE 响应
+    let response = new Response(transformStream.readable)
+
+    // 设置响应头，指定使用 SSE
+    response.headers.set('Content-Type', 'text/event-stream')
+    response.headers.set('Cache-Control', 'no-cache')
+    response.headers.set('Connection', 'keep-alive')
+    response.headers.set('Transfer-Encoding', 'chunked')
+
+    const writer = transformStream.writable.getWriter()
+    writer.write(sseUint8Array)
+
+    // 定义一个计数器
+    let counter = 0
+
+    // 每秒发送一个消息
+    const interval = setInterval(() => {
+        counter++
+
+        if (counter > 10) {
+            clearInterval(interval)
+            return
+        }
+
+        const message = `event: message\ndata: Message ${counter}\n\n`
+        const messageUint8Array = encoder.encode(message)
+        writer.write(messageUint8Array)
+    }, 1000)
+
+    return response
+}
+```
+
+#### 客户端
+```Typescript
+const eventSource = new EventSource('/sse/api/stream')
+// 监听 SSE 事件的消息
+eventSource.onmessage = function (event) {
+    console.log('Received message:', event.data)
+}
+```
+
+但是常规的 SSE 只可以通过GET来访问，这就导致请求方传递参数会有一些不那么优雅。如果需要传递大量文本时无法满足。
