@@ -6,8 +6,8 @@ date:   2023-09-07 22.18:00 +0800
 
 由于Nextjs新的 App Router 采用的是 Mozilla 标准 WebAPI 的 [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response), 所以写法和普通的 Node SSE 略有不同，以下是代码示例：
 
-#### 服务端 ```app/api/stream/route.ts```
-```Typescript
+#### 服务端 <i>app/api/stream/route.ts</i>
+```typescript
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(request: NextRequest) {
@@ -56,8 +56,11 @@ export async function GET(request: NextRequest) {
 }
 ```
 
+<br />
+<br />
 #### 客户端
-```Typescript
+
+```typescript
 const eventSource = new EventSource('/sse/api/stream')
 // 监听 SSE 事件的消息
 eventSource.onmessage = function (event) {
