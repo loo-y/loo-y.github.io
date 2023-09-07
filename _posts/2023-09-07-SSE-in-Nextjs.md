@@ -4,7 +4,9 @@ title: Create Server-Sent Events in Nextjs
 date:   2023-09-07 22.18:00 +0800
 ---
 
-由于Nextjs新的 App Router 采用的是 Mozilla 标准 WebAPI 的 [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response), 所以写法和普通的 Node SSE 略有不同，以下是代码示例：
+由于Nextjs新的 App Router 采用的是 Mozilla 标准 WebAPI 的 [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response), 所以写法和普通的 Node SSE 略有不同。
+<br />
+以下是代码示例：
 
 #### 服务端 <i>app/api/stream/route.ts</i>
 ```typescript
